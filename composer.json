@@ -1,0 +1,14 @@
+{
+	"name": "ivaris/test-expressive"
+	, "autoload": {
+		"psr-4": {
+			"Test\\": "src/"
+		}
+	}
+	, "require": {
+		"xtreamwayz/pimple-container-interop": "^1.0"
+		, "zendframework/zend-expressive": "^1.0"
+		, "zendframework/zend-expressive-fastroute": "^1.2"
+	}
+}
+
