@@ -15,10 +15,21 @@ are implemented as a stack, but only the top handler is executed.
 * If the error handler was registered with an error type mask, it is not executed
 and PHP's internal error handler is executed immediately.
 
-For regular PHP scripts, PHP's internal error prints the error on `stderr`.
+The implementation of this behaviour is in
+[Zend/zend.c](https://github.com/php/php-src/blob/PHP-5.6.28/Zend/zend.c#L1200)
+and the following lines.
 
-I believe the implementation of this behaviour is in
-[Zend/zend.c](https://github.com/php/php-src/blob/PHP-5.6.28/Zend/zend.c#L1200).
+### PHP's internal error handler and the `@` operator
+
+Only PHP's internal error handler sets the error reported by
+[`error_get_last`](http://php.net/error-get-last).
+This means: If a user defined error handler is registered,
+the last error can only be retrieved if the handler returns false.
+
+Error handlers are executed, if registered with the appropriate bitmask,
+but regardless whether the statement was prepended with the `@` operator.
+However, [`error_reporting`](http://php.net/error-reporting)
+returns zero, if the `@` was prepended.
 
 ## Demonstration
 
