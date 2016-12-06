@@ -3,7 +3,7 @@
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
 
-Test\Globals::$registerHandlerInMiddleware = true;
+Test\Globals::$registerHandlerInMiddleware = false;
 Test\Globals::$restoreBeforeRegistering = false;
 Test\Globals::$triggerError = true;
 
